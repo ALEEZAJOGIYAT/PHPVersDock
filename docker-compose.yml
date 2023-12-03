@@ -1,0 +1,47 @@
+version: '3.3'
+
+services:
+
+# There are 3 containers
+# mysql
+# php72
+# php80
+
+  mysql:
+    container_name: mysql
+    build: ./mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - db:/var/lib/mysql  
+
+  php72:
+    container_name: php72
+    build:
+      context: .
+      dockerfile: Dockerfile.72
+    ports:
+      - 80:80
+    volumes:
+      - ./php72:/var/www/html/    
+    depends_on:
+      - mysql
+
+  php80:
+    container_name: php80
+    build:
+      context: .
+      dockerfile: Dockerfile.80
+    ports:
+      - 88:80
+    volumes:
+      - ./php80:/var/www/html/
+    depends_on:
+      - mysql
+
+
+volumes:
+  db:
