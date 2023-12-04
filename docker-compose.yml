@@ -2,22 +2,9 @@ version: '3.3'
 
 services:
 
-# There are 3 containers
-# mysql
+# There are 2 containers
 # php72
 # php80
-
-  mysql:
-    container_name: mysql
-    build: ./mysql
-    ports:
-      - '3306:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
-    volumes:
-      - db:/var/lib/mysql  
-
   php72:
     container_name: php72
     build:
@@ -39,9 +26,5 @@ services:
       - 88:80
     volumes:
       - ./php80:/var/www/html/
-    depends_on:
-      - mysql
-
-
 volumes:
   db:
