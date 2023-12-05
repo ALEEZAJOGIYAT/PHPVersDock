@@ -4,7 +4,7 @@ services:
 
 # There are 2 containers
 # php72
-# php80 // second container
+# php80 // second container~~~
 
   php72:
     container_name: php72
@@ -15,8 +15,6 @@ services:
       - 80:80
     volumes:
       - ./php72:/var/www/html/    
-    depends_on:
-      - mysql
 
   php80:
     container_name: php80
